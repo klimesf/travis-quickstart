@@ -18,10 +18,13 @@ matrix:
     - php: hhvm
       env: TESTER_PHP_BIN="php-cgi"
 
-install:
+before_install:
   - composer self-update
+
+install:
   - composer install --no-interaction --prefer-source --dev
+
+before_script:
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
 
-# -c ./tests/php.ini
-script: ./vendor/bin/tester -p $TESTER_PHP_BIN ./tests/
+script: ./vendor/bin/tester -p $TESTER_PHP_BIN -c ./tests/php.ini ./tests/
