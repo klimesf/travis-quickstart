@@ -6,13 +6,21 @@ php:
   - 5.6
   - hhvm
 
+env:
+  - TESTER_PHP_BIN="php"
+  - TESTER_PHP_BIN="php-cgi"
+
 matrix:
   allow_failures:
     - php: hhvm
+
+  exclude:
+    - php: hhvm
+      env: TESTER_PHP_BIN="php-cgi"
 
 before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
 
-script: ./vendor/bin/tester -c ./tests/php.ini ./tests/
+script: ./vendor/bin/tester -c ./tests/php.ini -p $TESTER_PHP_BIN ./tests/
