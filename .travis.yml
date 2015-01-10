@@ -22,5 +22,6 @@ before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
-
-script: ./vendor/bin/tester -c ./tests/php.ini -p $TESTER_PHP_BIN ./tests/
+  
+# -c ./tests/php.ini
+script: ./vendor/bin/tester -p $TESTER_PHP_BIN ./tests/
