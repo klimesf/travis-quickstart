@@ -1,6 +1,8 @@
 Travis quickstart
 =================
 
+[![Build Status](https://travis-ci.org/klimesf/travis-quickstart.svg)](https://travis-ci.org/klimesf/travis-quickstart)
+
 Trying out Travis CI settings.
 
 
