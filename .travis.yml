@@ -26,5 +26,7 @@ install:
 
 before_script:
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+  - mysql -u root -e 'CREATE DATABASE testbase;'
+  - mysql -u root testbase < tests/testbase.sql
 
 script: ./vendor/bin/tester -p $TESTER_PHP_BIN -c ./tests/php.ini ./tests/
