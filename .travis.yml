@@ -35,11 +35,12 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --no-interaction --prefer-source --dev
+  - composer install --prefer-source --no-interaction
 
 before_script:
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
   - mysql -u root -e 'CREATE DATABASE testbase;'
   - mysql -u root testbase < tests/testbase.sql
 
-script: ./vendor/bin/tester -p $TESTER_PHP_BIN -c ./tests/php.ini ./tests/
+script:
+  - ./vendor/bin/tester -p $TESTER_PHP_BIN -c ./tests/php.ini ./tests/
